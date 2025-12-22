@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1042286354, guid: 852a8c326b318914aa667e3b6c005ae7, type: 3}
+  m_Name: PackData
+  m_EditorClassIdentifier: 
+  DisplayName: Electricity Part Pack
+  Version: 1.0
+  Description: A simple part pack reimplementing electricity.
+  Author: VerdiX
+  ShowIcon: 1
+  Icon: {fileID: 2800000, guid: 6b550f58794a4ac47a991976c24b9eb6, type: 3}
