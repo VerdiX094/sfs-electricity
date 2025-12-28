@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: PackData
   m_EditorClassIdentifier: 
   DisplayName: Electricity Part Pack
-  Version: v0.5
-  Description: A simple part pack reimplementing electricity. v0.5 - The Content
-    Update.
-  Author: N2O4
+  Version: v1.0.1
+  Description: A simple part pack reimplementing electricity.
+  Author: VerdiX
   ShowIcon: 1
-  Icon: {fileID: 2800000, guid: 6b550f58794a4ac47a991976c24b9eb6, type: 3}
+  Icon: {fileID: 2800000, guid: 078fb72745bfeaa419db9a8cabe730c4, type: 3}

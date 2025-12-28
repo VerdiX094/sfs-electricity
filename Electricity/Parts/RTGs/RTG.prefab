@@ -19,8 +19,10 @@ GameObject:
   - component: {fileID: 8442272081566430915}
   - component: {fileID: 5859485230433349666}
   - component: {fileID: 466575739661236745}
+  - component: {fileID: 3779695782363536046}
+  - component: {fileID: 4833383929397021278}
   m_Layer: 8
-  m_Name: Smol RTG
+  m_Name: RTG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,13 +35,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6025496177165280394}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6025496177165280502
 MonoBehaviour:
@@ -54,22 +56,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName:
-    TranslatableName: Small RTG [ELECTRICITY PACK]
+    TranslatableName: Electric RTG
     plainText: 1
   description:
-    TranslatableName: RTG, generates 0.75 units of electricity per second.
+    TranslatableName: A regular-sized RTG.
     plainText: 1
   mass:
     variables: {fileID: 6025496177165280511}
-    input: 0.5
+    input: 0.8
   centerOfMass:
     variables: {fileID: 6025496177165280511}
     x:
       variables: {fileID: 6025496177165280511}
-      input: .25
+      input: 0.25
     y:
       variables: {fileID: 6025496177165280511}
-      input: .25
+      input: 0.5
+  density: 0.3
   orientation: {fileID: 6025496177165280499}
   variablesModule: {fileID: 6025496177165280511}
   variants:
@@ -82,19 +85,7 @@ MonoBehaviour:
     tags: []
   onPartUsed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleTransfer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   temperature: -Infinity
 --- !u!114 &6025496177165280499
 MonoBehaviour:
@@ -126,7 +117,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doubleVariables:
-    saves: []
+    saves:
+    - name: state
+      save: 0
+      data: 0001000000ffffffff010000000000000004010000000d53797374656d2e446f75626c6501000000076d5f76616c7565000600000000000000000b
+    - name: rails
+      save: 0
+      data: 0001000000ffffffff010000000000000004010000000d53797374656d2e446f75626c6501000000076d5f76616c7565000600000000000000000b
   boolVariables:
     saves: []
   stringVariables:
@@ -176,7 +173,7 @@ MonoBehaviour:
         variables: {fileID: 6025496177165280511}
         x:
           variables: {fileID: 6025496177165280511}
-          input: .5
+          input: 0.5
         y:
           variables: {fileID: 6025496177165280511}
           input: 0
@@ -188,12 +185,12 @@ MonoBehaviour:
           input: 0.25
         y:
           variables: {fileID: 6025496177165280511}
-          input: .5
+          input: 1
       width:
         variables: {fileID: 6025496177165280511}
         x:
           variables: {fileID: 6025496177165280511}
-          input: .5
+          input: 0.5
         y:
           variables: {fileID: 6025496177165280511}
           input: 0
@@ -217,8 +214,8 @@ MonoBehaviour:
   textures:
     textureMode: 0
     texture:
-      colorTexture: {fileID: 11400000, guid: 3671503cc1343bb458906c7b8422382f, type: 2}
-      shapeTexture: {fileID: 11400000, guid: be073127eada83946aa1156a588301d8, type: 2}
+      colorTexture: {fileID: 11400000, guid: 9d8e31b3c25c1ef4d8ee353bff52b830, type: 2}
+      shapeTexture: {fileID: 11400000, guid: cba996a78776328418a9e8ff2526b7ab, type: 2}
     textures: []
     widthMode: 0
     width:
@@ -276,6 +273,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -297,6 +299,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -315,14 +318,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sources:
   - resourceType: {fileID: 11400000, guid: 04b436aa485ffa14cab70bc05a1ef5bf, type: 2}
-    flowPercent: 0.75
+    flowPercent: 1
     sourceSearchMode: 0
     surface: {fileID: 0}
     flowType: 1
     flowRate:
-      variableName: 
+      variableName: state
       referenceToVariables: {fileID: 6025496177165280511}
-      localValue: 0.75
+      localValue: 1.5
     state:
       value: 0
     sources: []
@@ -348,3 +351,129 @@ MonoBehaviour:
     variableName: 
     referenceToVariables: {fileID: 6025496177165280511}
     localValue: -Infinity
+--- !u!114 &3779695782363536046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025496177165280394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d5f04d6ea54b1489357be5022f4158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFS.Parts.Modules.MathModule
+  numericCalculators:
+  - input:
+      variables: {fileID: 6025496177165280511}
+      input: rails*0.02
+    output:
+      variableName: state
+      referenceToVariables: {fileID: 6025496177165280511}
+      localValue: 0
+  booleanComparisonCalculators: []
+  booleanOperatorCalculators: []
+--- !u!114 &4833383929397021278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025496177165280394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b1933727735ec24e80b0093a1748ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFS.Parts.Modules.ExternalVariableModule
+  physicsTimeScale:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  railsTimewarp:
+    variableName: rails
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  effectiveTimewarp:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  physicsEnabled:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  rocketAltitude:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  currentAtmosphereDensity:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  rocketPositionAngleRadians:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  surfaceVelocityX:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  surfaceVelocityY:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  velocityMagnitude:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  rcsX:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  rcsY:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  turnInput:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  wheelsInput:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  throttleOn:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  throttlePercent:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  throttleOutput:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  partTemperature:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  orientationX:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  orientationY:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  partRotation:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  partRotation_Normalized:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
+  globalRotation:
+    variableName: 
+    referenceToVariables: {fileID: 6025496177165280511}
+    localValue: 0
